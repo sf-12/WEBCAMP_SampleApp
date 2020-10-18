@@ -1,0 +1,5 @@
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # URL「top」にアクセスした時にhomesコントローラのtopアクションを呼び出す
+  get 'top' => 'homes#top'
+end
