@@ -3,31 +3,37 @@ class TodolistsController < ApplicationController
     #Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成する。
     @list = List.new
   end
-  
+
   def create
     list = List.new(list_params)
     list.save
     redirect_to todolist_path(list.id)
   end
-  
+
   def index
     @lists = List.all
   end
-  
+
   def show
     @list = List.find(params[:id])
   end
-  
+
   def edit
     @list = List.find(params[:id])
   end
-  
+
   def update
     list = List.find(params[:id])
     list.update(list_params)
     redirect_to todolist_path(list.id)
   end
-  
+
+  def destroy
+    list = List.find(params[:id]) # レコードを１件取得
+    list.destroy                  # レコードをDBから削除
+    redirect_to todolists_path     # 一覧ページへ戻る
+  end
+
   private
   #ストロングパラメータ
   def list_params
